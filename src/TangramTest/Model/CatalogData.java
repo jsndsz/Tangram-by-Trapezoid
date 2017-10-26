@@ -17,5 +17,5 @@ public class CatalogData {
 	public int maxYRange = 600;
 
 	public static int screenSizeX = 1366;
-	public static int screenSizeY = 730;
+	public static int screenSizeY = 768;
 }

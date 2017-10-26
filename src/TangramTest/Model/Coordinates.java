@@ -93,7 +93,7 @@ public class Coordinates {
 	       int initialShapeSet2y = 130;
 	       
 	       int[] shapeSet2x = { initialShapeSet2x, initialShapeSet2x, initialShapeSet2x , initialShapeSet2x , initialShapeSet2x , initialShapeSet2x, initialShapeSet2x , initialShapeSet2x ,initialShapeSet2x ,initialShapeSet2x ,initialShapeSet2x  };
-	       int[] shapeSet2y = { initialShapeSet2y, initialShapeSet2y + 20, initialShapeSet2y + 60, initialShapeSet2y + 140, initialShapeSet2y + 200, initialShapeSet2y + 280, initialShapeSet2y + 320,initialShapeSet2y + 370,initialShapeSet2y + 420,initialShapeSet2y + 490,initialShapeSet2y + 550 };
+	       int[] shapeSet2y = { initialShapeSet2y, initialShapeSet2y + 10, initialShapeSet2y + 40, initialShapeSet2y + 110, initialShapeSet2y + 170, initialShapeSet2y + 240, initialShapeSet2y + 270,initialShapeSet2y + 330,initialShapeSet2y + 370,initialShapeSet2y + 440,initialShapeSet2y + 480 };
 	      final int shapeSet21x[] = { initialShapeSet2x, initialShapeSet2x + 4*addingPoint, initialShapeSet2x + 12*addingPoint};
 	      final int shapeSet21y[] = { initialShapeSet2y, initialShapeSet2y-4*addingPoint, initialShapeSet2y};
 
