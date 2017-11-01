@@ -21,6 +21,7 @@ import javax.swing.border.EmptyBorder;
 import TangramTest.Controller.Back;
 import TangramTest.Controller.CLayout;
 import TangramTest.Controller.Reset;
+import TangramTest.Controller.SolveScreenController;
 import TangramTest.Model.CatalogData;
 import TangramTest.Model.PuzzleSet;
 import TangramTest.Model.ShapeSet;
@@ -126,6 +127,35 @@ public class PuzzleSolveScreen extends JFrame {
 
 		JButton btnRotateLeft = new JButton("Rotate Left");
 		panel_4.add(btnRotateLeft);
+		btnRotateLeft.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int gx = 0;
+				int gy = 0;	
+				int allx[] = SolveScreenController.activeShape.xpoints;
+				int ally[] = SolveScreenController.activeShape.ypoints;
+				for (int i=0;i<allx.length;i++) {
+					gx+=allx[i];
+					gy+=ally[i];
+				}
+				gx=gx/allx.length;
+				gy=gy/ally.length; //this finds the centroid of the polygon (gx,gy)
+
+				
+				int newx[] = new int[allx.length];
+				int newy[] = new int[ally.length];
+				double angleRad = Math.toRadians(15);
+				double costheta = Math.cos(angleRad);
+				double sintheta = Math.sin(angleRad);
+				for(int i=0;i<allx.length;i++) {
+					double dx = allx[i] - gx;
+					double dy = ally[i] - gy;
+					newx[i] = gx + (int) (dx*costheta - dy*sintheta);
+					newy[i] = gy + (int) (dx*costheta + dy*sintheta);
+				}
+				SolveScreenController.activeShape.reset();
+				SolveScreenController.activeShape=new Polygon(newx,newy,newx.length);
+			}
+		});
 
 		JButton btnUndo = new JButton("Undo");
 		panel_4.add(btnUndo);

@@ -21,7 +21,7 @@ public class SolveScreenController {
 	private static Polygon dragShape; 
 	// To capture the last location of the Selected shape
 	private static Point lastLocation; 
-	
+	public static Polygon activeShape; //shows the shape that was last selected for the purpose of shape rotation
 	// to iterate overs the palette shape to identify the selected shape
 	private List<Polygon> myPolygons = new ArrayList<Polygon>(); 
 	CardLayout cardLayout;
@@ -69,6 +69,7 @@ public class SolveScreenController {
 
 					dragShape.translate(-((int) (rr.getWidth() - Math.abs(xLast - dataSet.snapPoint)) + 20), 0);
 					view4.repaint();
+					activeShape = dragShape;
 				}
 			} catch (NullPointerException ex) {
 
