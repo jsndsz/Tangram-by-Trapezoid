@@ -18,4 +18,14 @@ public class CatalogData {
 
 	public static int screenSizeX = 1366;
 	public static int screenSizeY = 768;
+
+	// Reading files which contains the original coordinates for the puzzle
+	public String shapeset1File="src/TangramTest/Resources/ShapeSet1.txt";
+	public String shapeset2File="src/TangramTest/Resources/ShapeSet2.txt";
+	public String PuzzleSet1="src/TangramTest/Resources/PuzzleSet1.txt";
+	public String PuzzleSet2="src/TangramTest/Resources/PuzzleSet2.txt";
+	int noOfShapesShapeSet1=7;
+	int noOfShapesShapeSet2=11;
+	int noOfShapesPuzzleSet1=10;
+	int noOfShapesPuzzleSet2=10;
 }
