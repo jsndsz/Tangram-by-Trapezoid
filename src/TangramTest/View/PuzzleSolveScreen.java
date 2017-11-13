@@ -29,7 +29,7 @@ import TangramTest.Model.ShapeSet;
 public class PuzzleSolveScreen extends JFrame {
 
 	public int chosenPuzzle;
-	private JPanel contentPane;
+	JPanel contentPane;
 	private Polygon dragShape;
 	private Point lastLocation;
 	public ArrayList<Polygon> shapes = new ArrayList<Polygon>();
@@ -37,6 +37,14 @@ public class PuzzleSolveScreen extends JFrame {
 	PuzzleSet puzzleShape;
 	public static int chosenShapeSetNumber;
 	public static int chosenPuzzleSetNumber;
+	
+	/* this need to be implemented
+	Rotate rotate = new Rotate();
+	Flip flip = new Flip();
+	Undo undo = new Undo();
+	*/
+	
+
 
 	JPanel shapePanel;
 	CatalogData dataSet = new CatalogData();
@@ -126,16 +134,76 @@ public class PuzzleSolveScreen extends JFrame {
 
 		JButton btnRotateLeft = new JButton("Rotate Left");
 		panel_4.add(btnRotateLeft);
+		btnRotateLeft.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//Rotate.rotateLeft();
+			}
+		});
 
 		JButton btnUndo = new JButton("Undo");
 		panel_4.add(btnUndo);
+		btnUndo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//undo.actionUndone();
+			}
+		});
 
 		JButton btnRedo = new JButton("Redo");
 		panel_4.add(btnRedo);
+		btnRedo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//Redo.actionRedone();
+			}
+		});
 
 		JButton btnRotateRight = new JButton("Rotate Right");
 		panel_4.add(btnRotateRight);
+		btnRotateRight.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//Rotate.rotateRight();
+			}
+		});
+		
+		
+		JPanel panel_5 = new JPanel();
+		panel_5.setBounds(1000, 250, 100, 400);
+		contentPane.add(panel_5);
+		panel_5.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 
+		JButton btnFlipR = new JButton("Flip right");
+		panel_5.add(btnFlipR);
+		btnFlipR.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//flip.flipRight();
+				
+			}
+		});
+		
+		JButton btnFlipL = new JButton("Flip left");
+		panel_5.add(btnFlipL);
+		btnFlipL.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//flip.flipLeft();
+			}
+		});
+		
+		JButton btnFlipH = new JButton("Flip Up");
+		panel_5.add(btnFlipH);
+		btnFlipH.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//flip.flipUp();
+			}
+		});
+
+		JButton btnFlipV = new JButton("Flip Down");
+		panel_5.add(btnFlipV);
+		btnFlipV.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//flip.flipDown();
+			}
+		});
+		
+		
 		shapePanel = new JPanel() {
 			protected void paintComponent(Graphics g) {
 
@@ -167,10 +235,12 @@ public class PuzzleSolveScreen extends JFrame {
 		shapePanel.setBounds(0, 0, 1000, 2000);
 		contentPane.add(shapePanel);
 		return contentPane;
+		
 	}
-
+	
+	
 	public List<Polygon> getShapes() {
 		return shapes;
 	}
 
-}
+}s
