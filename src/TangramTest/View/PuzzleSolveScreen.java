@@ -21,6 +21,7 @@ import javax.swing.border.EmptyBorder;
 import TangramTest.Controller.Back;
 import TangramTest.Controller.CLayout;
 import TangramTest.Controller.Reset;
+import TangramTest.Controller.Rotate;
 import TangramTest.Model.CatalogData;
 import TangramTest.Model.PuzzleSet;
 import TangramTest.Model.ShapeSet;
@@ -37,6 +38,7 @@ public class PuzzleSolveScreen extends JFrame {
 	PuzzleSet puzzleShape;
 	public static int chosenShapeSetNumber;
 	public static int chosenPuzzleSetNumber;
+	Rotate rotate = new Rotate();
 
 	JPanel shapePanel;
 	CatalogData dataSet = new CatalogData();
@@ -126,6 +128,11 @@ public class PuzzleSolveScreen extends JFrame {
 
 		JButton btnRotateLeft = new JButton("Rotate Left");
 		panel_4.add(btnRotateLeft);
+		btnRotateLeft.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Rotate.rotateLeft();
+			}
+		});
 
 		JButton btnUndo = new JButton("Undo");
 		panel_4.add(btnUndo);
@@ -135,6 +142,11 @@ public class PuzzleSolveScreen extends JFrame {
 
 		JButton btnRotateRight = new JButton("Rotate Right");
 		panel_4.add(btnRotateRight);
+		btnRotateRight.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Rotate.rotateRight();
+			}
+		});
 
 		shapePanel = new JPanel() {
 			protected void paintComponent(Graphics g) {
