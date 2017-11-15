@@ -10,8 +10,14 @@ import java.awt.Polygon;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.geom.Line2D;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -22,6 +28,7 @@ import TangramTest.Controller.Back;
 import TangramTest.Controller.CLayout;
 import TangramTest.Controller.Reset;
 import TangramTest.Controller.Rotate;
+import TangramTest.Controller.WriteOutObject;
 import TangramTest.Model.CatalogData;
 import TangramTest.Model.PuzzleSet;
 import TangramTest.Model.ShapeSet;
@@ -39,6 +46,7 @@ public class PuzzleSolveScreen extends JFrame {
 	public static int chosenShapeSetNumber;
 	public static int chosenPuzzleSetNumber;
 	Rotate rotate = new Rotate();
+	List<Polygon> finalShapes=new ArrayList<Polygon>();
 
 	JPanel shapePanel;
 	CatalogData dataSet = new CatalogData();
@@ -54,6 +62,71 @@ public class PuzzleSolveScreen extends JFrame {
 
 	public int getChosenPuzzle() {
 		return chosenPuzzle;
+	}
+	
+	public void setMyPolygonState()
+	{
+		CatalogData cd=new CatalogData();
+		String filePathString="";
+		WriteOutObject wo=new WriteOutObject();
+		System.out.println("chosen puzzle is shape "+chosenPuzzle);
+		if (chosenShapeSetNumber==1)
+		 {
+			
+			 filePathString=cd.ShapeSet1Files[chosenPuzzle];
+		 }
+		else if (chosenShapeSetNumber==2)
+		 {
+			 filePathString=cd.ShapeSet2Files[chosenPuzzle];
+		 }
+		
+		Map temp=null;
+		WriteOutObject k;
+		
+		File f = new File(filePathString);
+		
+		if(f.exists() && !f.isDirectory()) { 
+		try
+		{
+			
+	        FileInputStream fileStream=new FileInputStream(filePathString);
+	        ObjectInputStream in=new ObjectInputStream(fileStream);
+	        k=(WriteOutObject) in.readObject();
+	        in.close();
+	        fileStream.close();
+
+			temp=(Map)k.serializedPolygons;
+			k.setSerializedPolygon(k);
+			
+			List<Polygon> keySeyFromSerializedPolygons=new ArrayList<Polygon>(temp.keySet());
+			finalShapes=keySeyFromSerializedPolygons;
+			Iterator it = temp.entrySet().iterator();
+		    while (it.hasNext()) {
+		        Map.Entry pair = (Map.Entry)it.next();
+		        it.remove(); // avoids a ConcurrentModificationException
+		        
+		    }
+		
+		}
+		catch(IOException e)
+		{
+			System.out.println("IoException");
+		}
+		catch(ClassNotFoundException e)
+		{
+			System.out.println("class not fund");
+		}
+		
+	}//close for file
+		else {
+			finalShapes=(ArrayList<Polygon>) shapeSetObj.getShapeSet();
+		}
+
+	}
+	
+	public void setResetstate()
+	{
+		finalShapes=(ArrayList<Polygon>) shapeSetObj.getShapeSet();
 	}
 
 	@SuppressWarnings("serial")
@@ -147,7 +220,7 @@ public class PuzzleSolveScreen extends JFrame {
 				Rotate.rotateRight();
 			}
 		});
-
+		setMyPolygonState();
 		shapePanel = new JPanel() {
 			protected void paintComponent(Graphics g) {
 
@@ -160,7 +233,7 @@ public class PuzzleSolveScreen extends JFrame {
 				g.drawPolygon(chosenPuzzleShape);
 				g.fillPolygon(chosenPuzzleShape);
 				for (int i = 0; i < shapeSetObj.getShapeSet().size(); i++) {
-					Polygon shape = (Polygon) shapeSetObj.getShapeSet().get(i);
+					Polygon shape = (Polygon) finalShapes.get(i);
 					g.setColor(colors[i]);
 					g.drawPolygon(shape);
 					g.fillPolygon(shape);
