@@ -1,4 +1,4 @@
-package TangramTest.View;
+package TangramPuzzle.View;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -12,14 +12,25 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import TangramTest.Controller.Back;
-import TangramTest.Controller.CLayout;
+import TangramPuzzle.Controller.Back;
+import TangramPuzzle.Controller.CLayout;
 
+/**
+ * This is a GUI class displays the shapse sets availbale to the user to play the game.
+ * User can select one of the shape sets
+ * 
+ * @author phavannavar
+ *
+ */
 @SuppressWarnings("serial")
 public class ShapeSetSelection extends JPanel {
-
+	PuzzleSolveScreen ps = new PuzzleSolveScreen();
 	private JPanel contentPane;
 
+	/** 
+	 * This method draws the JPanel required for the screen that allows the user to choose from 2 puzzles.
+	 * @return jpane is returned
+	 */
 	public JPanel drawShapeSetSelection() {
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -40,14 +51,12 @@ public class ShapeSetSelection extends JPanel {
 		gbc_btnBack.gridy = 0;
 		contentPane.add(btnBack, gbc_btnBack);
 
-		//
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				Back bk = new Back();
 				bk.getBack(1);
 			}
 		});
-		//
 		JLabel label = new JLabel("");
 		GridBagConstraints gbc_label = new GridBagConstraints();
 		gbc_label.fill = GridBagConstraints.BOTH;
@@ -56,18 +65,21 @@ public class ShapeSetSelection extends JPanel {
 		gbc_label.gridy = 0;
 		contentPane.add(label, gbc_label);
 
+		/**
+		 * On clicking the ShapeSet 1 button, user is taken to the screen showing the puzzles that can be solved
+		 * using the first shape set.
+		 */
 		JButton btnShapeSet1 = new JButton("ShapeSet 1");
 		btnShapeSet1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				PuzzleSolveScreen ps = new PuzzleSolveScreen();
-				ps.setPuzzleConf(1, 1);
+				ps.setPuzzleConf(1);
 				CLayout cl = new CLayout();
 				cl.showView3();
 			}
 		});
 
 		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon(ShapeSetSelection.class.getResource("/TangramTest/Resources/ShapeSet1.jpg")));
+		lblNewLabel.setIcon(new ImageIcon(ShapeSetSelection.class.getResource("/TangramPuzzle/Resources/ShapeSet1.jpg")));
 		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
 		gbc_lblNewLabel.weighty = 0.2;
 		gbc_lblNewLabel.weightx = 0.2;
@@ -78,7 +90,7 @@ public class ShapeSetSelection extends JPanel {
 
 		JLabel lblNewLabel_1 = new JLabel("");
 		lblNewLabel_1
-				.setIcon(new ImageIcon(ShapeSetSelection.class.getResource("/TangramTest/Resources/ShapeSet2.png")));
+				.setIcon(new ImageIcon(ShapeSetSelection.class.getResource("/TangramPuzzle/Resources/ShapeSet2.png")));
 		GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
 		gbc_lblNewLabel_1.weighty = 0.2;
 		gbc_lblNewLabel_1.weightx = 0.2;
@@ -96,11 +108,15 @@ public class ShapeSetSelection extends JPanel {
 		gbc_btnShapeSet1.gridy = 2;
 		contentPane.add(btnShapeSet1, gbc_btnShapeSet1);
 
+	/**
+		 * On clicking the ShapeSet 2 button, user is taken to the screen showing the puzzles that can be solved
+		 * using the second shape set.
+		 */
 		JButton btnShapeset2 = new JButton("ShapeSet 2");
 		btnShapeset2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				PuzzleSolveScreen ps = new PuzzleSolveScreen();
-				ps.setPuzzleConf(2, 2);
+
+				ps.setPuzzleConf(2);
 				CLayout cl = new CLayout();
 				cl.showView3PuzzleSet2();
 			}

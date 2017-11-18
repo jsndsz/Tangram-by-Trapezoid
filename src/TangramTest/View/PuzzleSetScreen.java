@@ -1,4 +1,4 @@
-package TangramTest.View;
+package TangramPuzzle.View;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -13,14 +13,20 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import TangramTest.Controller.Back;
-import TangramTest.Controller.CLayout;
+import TangramPuzzle.Controller.Back;
+import TangramPuzzle.Controller.CLayout;
 
+/**
+ * This GUI class displays ten puzzles that the user can choose from. The user
+ * is shown this screen when ShapeSet 1 button is chosen.
+ * 
+ * @author jdsouza
+ *
+ */
 @SuppressWarnings("serial")
 public class PuzzleSetScreen extends JFrame {
 
 	private JPanel contentPane;
-
 
 	public JPanel drawPuzzleSetScreen() {
 		contentPane = new JPanel();
@@ -34,6 +40,9 @@ public class PuzzleSetScreen extends JFrame {
 		gbl_contentPane.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
 		contentPane.setLayout(gbl_contentPane);
 
+		/**
+		 * On Clicking Back button, user is taken back to Shape set selection screen
+		 */
 		JButton btnNewButton = new JButton("Back");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -50,7 +59,7 @@ public class PuzzleSetScreen extends JFrame {
 		contentPane.add(btnNewButton, gbc_btnNewButton);
 
 		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon(PuzzleSetScreen.class.getResource("/TangramTest/Resources/rsz_bear.png")));
+		lblNewLabel.setIcon(new ImageIcon(PuzzleSetScreen.class.getResource("/TangramPuzzle/Resources/rsz_bear.png")));
 		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
 		gbc_lblNewLabel.weighty = 0.5;
 		gbc_lblNewLabel.weightx = 0.5;
@@ -60,9 +69,9 @@ public class PuzzleSetScreen extends JFrame {
 		contentPane.add(lblNewLabel, gbc_lblNewLabel);
 
 		JLabel lblSwan = new JLabel("");
-		lblSwan.setIcon(new ImageIcon(PuzzleSetScreen.class.getResource("/TangramTest/Resources/rsz_swan.png")));
+		lblSwan.setIcon(new ImageIcon(PuzzleSetScreen.class.getResource("/TangramPuzzle/Resources/rsz_swan.png")));
 		lblSwan.setDisabledIcon(
-				new ImageIcon(PuzzleSetScreen.class.getResource("/TangramTest/Resources/rsz_swan.png")));
+				new ImageIcon(PuzzleSetScreen.class.getResource("/TangramPuzzle/Resources/rsz_swan.png")));
 		GridBagConstraints gbc_lblSwan = new GridBagConstraints();
 		gbc_lblSwan.weighty = 0.5;
 		gbc_lblSwan.weightx = 0.5;
@@ -72,8 +81,8 @@ public class PuzzleSetScreen extends JFrame {
 		contentPane.add(lblSwan, gbc_lblSwan);
 
 		JLabel lblMonOnHorse = new JLabel("");
-		lblMonOnHorse
-				.setIcon(new ImageIcon(PuzzleSetScreen.class.getResource("/TangramTest/Resources/rsz_manonhorse.png")));
+		lblMonOnHorse.setIcon(
+				new ImageIcon(PuzzleSetScreen.class.getResource("/TangramPuzzle/Resources/rsz_manonhorse.png")));
 		GridBagConstraints gbc_lblMonOnHorse = new GridBagConstraints();
 		gbc_lblMonOnHorse.weighty = 0.5;
 		gbc_lblMonOnHorse.weightx = 0.5;
@@ -83,7 +92,7 @@ public class PuzzleSetScreen extends JFrame {
 		contentPane.add(lblMonOnHorse, gbc_lblMonOnHorse);
 
 		JLabel lblCamel = new JLabel("");
-		lblCamel.setIcon(new ImageIcon(PuzzleSetScreen.class.getResource("/TangramTest/Resources/rsz_camel.png")));
+		lblCamel.setIcon(new ImageIcon(PuzzleSetScreen.class.getResource("/TangramPuzzle/Resources/rsz_camel.png")));
 		GridBagConstraints gbc_lblCamel = new GridBagConstraints();
 		gbc_lblCamel.weighty = 0.5;
 		gbc_lblCamel.weightx = 0.5;
@@ -93,7 +102,7 @@ public class PuzzleSetScreen extends JFrame {
 		contentPane.add(lblCamel, gbc_lblCamel);
 
 		JLabel lblBoat_1 = new JLabel("");
-		lblBoat_1.setIcon(new ImageIcon(PuzzleSetScreen.class.getResource("/TangramTest/Resources/rsz_yacht.png")));
+		lblBoat_1.setIcon(new ImageIcon(PuzzleSetScreen.class.getResource("/TangramPuzzle/Resources/rsz_yacht.png")));
 		GridBagConstraints gbc_lblBoat_1 = new GridBagConstraints();
 		gbc_lblBoat_1.weighty = 0.5;
 		gbc_lblBoat_1.weightx = 0.5;
@@ -187,7 +196,7 @@ public class PuzzleSetScreen extends JFrame {
 		});
 
 		JLabel lblSquare = new JLabel("");
-		lblSquare.setIcon(new ImageIcon(PuzzleSetScreen.class.getResource("/TangramTest/Resources/rsz_square.png")));
+		lblSquare.setIcon(new ImageIcon(PuzzleSetScreen.class.getResource("/TangramPuzzle/Resources/rsz_square.png")));
 		GridBagConstraints gbc_lblSquare = new GridBagConstraints();
 		gbc_lblSquare.weighty = 0.5;
 		gbc_lblSquare.weightx = 0.5;
@@ -197,7 +206,7 @@ public class PuzzleSetScreen extends JFrame {
 		contentPane.add(lblSquare, gbc_lblSquare);
 
 		JLabel lblShark = new JLabel("");
-		lblShark.setIcon(new ImageIcon(PuzzleSetScreen.class.getResource("/TangramTest/Resources/rsz_shark.png")));
+		lblShark.setIcon(new ImageIcon(PuzzleSetScreen.class.getResource("/TangramPuzzle/Resources/rsz_shark.png")));
 		GridBagConstraints gbc_lblShark = new GridBagConstraints();
 		gbc_lblShark.weighty = 0.5;
 		gbc_lblShark.weightx = 0.5;
@@ -207,7 +216,7 @@ public class PuzzleSetScreen extends JFrame {
 		contentPane.add(lblShark, gbc_lblShark);
 
 		JLabel lblHouse = new JLabel("");
-		lblHouse.setIcon(new ImageIcon(PuzzleSetScreen.class.getResource("/TangramTest/Resources/rsz_house.png")));
+		lblHouse.setIcon(new ImageIcon(PuzzleSetScreen.class.getResource("/TangramPuzzle/Resources/rsz_house.png")));
 		GridBagConstraints gbc_lblHouse = new GridBagConstraints();
 		gbc_lblHouse.weighty = 0.5;
 		gbc_lblHouse.weightx = 0.5;
@@ -217,7 +226,7 @@ public class PuzzleSetScreen extends JFrame {
 		contentPane.add(lblHouse, gbc_lblHouse);
 
 		JLabel lblCat = new JLabel("");
-		lblCat.setIcon(new ImageIcon(PuzzleSetScreen.class.getResource("/TangramTest/Resources/rsz_cat.png")));
+		lblCat.setIcon(new ImageIcon(PuzzleSetScreen.class.getResource("/TangramPuzzle/Resources/rsz_cat.png")));
 		GridBagConstraints gbc_lblCat = new GridBagConstraints();
 		gbc_lblCat.weighty = 0.5;
 		gbc_lblCat.weightx = 0.5;
@@ -227,7 +236,7 @@ public class PuzzleSetScreen extends JFrame {
 		contentPane.add(lblCat, gbc_lblCat);
 
 		JLabel lblBoat = new JLabel("");
-		lblBoat.setIcon(new ImageIcon(PuzzleSetScreen.class.getResource("/TangramTest/Resources/rsz_1rabbit.png")));
+		lblBoat.setIcon(new ImageIcon(PuzzleSetScreen.class.getResource("/TangramPuzzle/Resources/rsz_1rabbit.png")));
 		GridBagConstraints gbc_lblBoat = new GridBagConstraints();
 		gbc_lblBoat.weighty = 0.5;
 		gbc_lblBoat.weightx = 0.5;

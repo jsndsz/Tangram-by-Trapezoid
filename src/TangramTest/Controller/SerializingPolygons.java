@@ -1,4 +1,4 @@
-package TangramTest.Controller;
+package TangramPuzzle.Controller;
 
 import java.awt.Polygon;
 import java.io.FileOutputStream;
@@ -11,97 +11,83 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import TangramTest.Model.CatalogData;
-import TangramTest.Model.ShapeSet;
-import TangramTest.View.PuzzleSolveScreen;
+import TangramPuzzle.Model.CatalogData;
+import TangramPuzzle.Model.ShapeSet;
+import TangramPuzzle.Model.ShapeState;
+import TangramPuzzle.View.PuzzleSolveScreen;
 
+/**
+ * This class is written to serialize the puzzle
+ * @author sinamdar
+ *
+ */
 public class SerializingPolygons {
-	
-	public static Map<Polygon,List> serializablePolygons=new HashMap<Polygon,List>();
-	List<int []> state=new ArrayList<int []>();
+
+	List<int[]> state = new ArrayList<int[]>();
 	private List<Polygon> myPolygons = new ArrayList<Polygon>();
-	ShapeSet s=new ShapeSet();
+	ShapeSet s = new ShapeSet();
 	int chosenShapeSet;
 	int chosenPuzzle;
 	static String fileToBeWritten;
-	
+	ShapeState ss = new ShapeState();
 
-	 public void SerializingPolygons(Polygon p)
-	{
-		 System.out.println("p is "+p);
-		 int[] x = p.xpoints;
-		 int[] y = p.ypoints;
-		 state.add(x);
-		 state.add(y);
-		 serializablePolygons.put(p, state);
-	
-	System.out.println("entered serializable size is "+serializablePolygons.size());
-	int noOfElementsMap=serializablePolygons.keySet().size();
-	
-	
-	if(noOfElementsMap==1/*s.getShapeSet().size()*/)
-	{
-		System.out.println("entered serializable size is "+serializablePolygons.size());
-		System.out.println("shape set size "+s.getShapeSet().size()+", no of ele in map: "+noOfElementsMap);
-//		PuzzleCompletion pc=new PuzzleCompletion();
-		System.out.println("same length");
-//		pc.checkPuzzleCompletion(serializablePolygons);
-		setPuzzleConfigurations();
+
+/**
+ * constructor
+ * @param p this the instance of the polygon
+ */
+
+	public void SerializingPolygons(Polygon p) {
+		int[] x = p.xpoints;
+		int[] y = p.ypoints;
+		state.add(x);
+		state.add(y);
+		ss.setShapeForSerialize(p, state);
+
+		int noOfElementsMap = ss.getSerializedShape().keySet().size();
+
+		if (noOfElementsMap == s.getShapeSet().size()) {
+			setPuzzleConfigurations();
+			PuzzleCompletion pc = new PuzzleCompletion();
+			pc.checkPuzzleCompletion();
+
+		}
+
 	}
-	
-	
-//	PuzzleCompletion pz=new PuzzleCompletion();
-//	if(serializablePolygons!=null)
-//	{
-//	pz.addArea();
-//	}
-//	
+
+ /**
+	  * This method writes the serialized puzzle to a file
+	  */
+
+	public void setPuzzleConfigurations() {
+		PuzzleSolveScreen psolveScreen = new PuzzleSolveScreen();
+		CatalogData cd = new CatalogData();
+		chosenPuzzle = psolveScreen.getChosenPuzzle();
+		chosenShapeSet = psolveScreen.chosenShapeSetNumber;
+		if (chosenShapeSet == 1) {
+			fileToBeWritten = cd.ShapeSet1Files[chosenPuzzle];
+		} else if (chosenShapeSet == 2) {
+			fileToBeWritten = cd.ShapeSet2Files[chosenPuzzle];
+		}
+
 	}
-	 
-	 public void setPuzzleConfigurations()
-	 {
-			PuzzleSolveScreen psolveScreen=new PuzzleSolveScreen();
-		 CatalogData cd=new CatalogData();
-		 chosenPuzzle=psolveScreen.getChosenPuzzle();
-		 chosenShapeSet=psolveScreen.chosenShapeSetNumber;
-		 if (chosenShapeSet==1)
-		 {
-			 fileToBeWritten=cd.ShapeSet1Files[chosenPuzzle];
-			 System.out.println("writin to file f"+fileToBeWritten);
-		 }
-		 else  if (chosenShapeSet==2)
-		 {
-			 fileToBeWritten=cd.ShapeSet2Files[chosenPuzzle];
-			 System.out.println("writin to file f"+fileToBeWritten);
-		 }
-		 
-	 }
-	 
-	 
-	 public void SerializePuzzle()
-	 {
-		 System.out.println();
-		 CatalogData cd=new CatalogData();
-		 WriteOutObject objectWritten=new WriteOutObject(serializablePolygons);
-		 try {
-//		 		FileOutputStream fileStream=new FileOutputStream(cd.SerializedPolygonsFile);
-			 	FileOutputStream fileStream=new FileOutputStream(fileToBeWritten);
-		 		ObjectOutputStream out=new ObjectOutputStream(fileStream);	
-		 		System.out.println("object written is "+objectWritten);
-		 		out.writeObject(objectWritten);
-		 		out.close();
-		 		fileStream.close();
-		 		System.out.println("initiate serialize Has been serialised");
-		 		
-		 		}catch(IOException ex)
-		 		{
-		 		System.out.println("IO Exception was found");
-		 		}
-	 }
-	
-	public Map getSerializingPolygons()
-	{
-		return serializablePolygons;
+
+/**
+	  * This method serializes a Polygon
+	  */
+
+	public void SerializePuzzle() {
+		CatalogData cd = new CatalogData();
+		WriteOutObject objectWritten = new WriteOutObject(ss.getSerializedShape());
+		try {
+			FileOutputStream fileStream = new FileOutputStream(fileToBeWritten);
+			ObjectOutputStream out = new ObjectOutputStream(fileStream);
+			out.writeObject(objectWritten);
+			out.close();
+			fileStream.close();
+		} catch (IOException ex) {
+			ex.printStackTrace();
+		}
 	}
-	
+
 }

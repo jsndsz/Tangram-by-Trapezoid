@@ -1,11 +1,16 @@
-package TangramTest.Controller;
+package TangramPuzzle.Controller;
 
+/**
+ * Controller to go Back to the previous screen
+ * @author cpai
+ *
+ */
 public class Back {
 	CLayout cl = new CLayout();
 
-	/*
-	 * functionality to get to previous screen from the current screen takes
-	 * input as the view you want to go to
+	/**
+	 * Method to go to the previous screen from the current screen
+	 * @param viewChoice : screen number to go to
 	 */
 	public void getBack(int viewChoice) {
 		switch (viewChoice) {
@@ -21,7 +26,7 @@ public class Back {
 			cl.showView3();
 			break;
 		}
-		case 5:{
+		case 5: {
 			cl.showView3PuzzleSet2();
 		}
 

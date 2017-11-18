@@ -1,4 +1,4 @@
-package TangramTest.Controller;
+package TangramPuzzle.Controller;
 
 import java.awt.Polygon;
 import java.io.Serializable;
@@ -8,28 +8,40 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+/**
+ * This class helps writing the serialized objects to a file.
+ * @author sinamdar
+ *
+ */
 public class WriteOutObject implements Serializable {
-	public Map<Polygon,List> serializedPolygons=new HashMap<Polygon,List>();
-	
-	public  WriteOutObject(Map s)
-	{
-		this.serializedPolygons=s;
-		System.out.println("serialized polygon is"+this.serializedPolygons);
+	/**
+	 * Store the polygons in a map
+	 */
+
+	public Map<Polygon, List> serializedPolygons = new HashMap<Polygon, List>();
+
+
+
+	public WriteOutObject(Map s) {
+		this.serializedPolygons = s;
 	}
-	
-	public WriteOutObject()
-	{
-		System.out.println("Checking for desereilaizing polygon file");
+
+/**
+	 * Default constructor
+	 */
+	public WriteOutObject() {
 	}
-	
-	public void setSerializedPolygon(WriteOutObject o)
-	{
-		this.serializedPolygons=o.serializedPolygons;
+
+
+	public void setSerializedPolygon(WriteOutObject o) {
+		this.serializedPolygons = o.serializedPolygons;
 	}
-	
-	public Map getSerializedPolygon()
-	{
-		System.out.println(" GETMETHOD   serialized file get method :"+this.serializedPolygons);
+/**
+	 * This method returns a serilalized Polygon
+	 * @return returns a map
+	 */	
+
+	public Map getSerializedPolygon() {
 		return this.serializedPolygons;
 	}
 }
